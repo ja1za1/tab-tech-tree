@@ -1,4 +1,4 @@
-import type { Node } from "@/lib/nodes";
+import type { Node } from "@/lib/nodes/all-nodes";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 

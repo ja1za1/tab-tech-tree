@@ -1,6 +1,6 @@
 import { useDragging } from "@/hooks/useDragging";
 import useTechTree from "@/hooks/useTechTree";
-import { ALL_NODES } from "@/lib/nodes";
+import { ALL_NODES } from "@/lib/nodes/all-nodes";
 import TechNode from "./tech-node";
 
 export default function TechTree() {
