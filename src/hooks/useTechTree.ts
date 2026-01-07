@@ -1,53 +1,112 @@
 import type { Node } from "@/lib/nodes";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+const encodeNodeIds = (ids: number[]): string => {
+  const sortedIds = ids.filter((id) => id !== 0).sort((a, b) => a - b);
+
+  if (sortedIds.length === 0) {
+    return "";
+  }
+
+  return sortedIds.map((id) => id.toString(16).padStart(2, "0")).join("");
+};
+
+const decodeNodeIds = (hexString: string): number[] => {
+  if (!hexString) return [];
+
+  const ids: number[] = [];
+  for (let i = 0; i < hexString.length; i += 2) {
+    const hex = hexString.substr(i, 2);
+    const id = parseInt(hex, 16);
+    if (!isNaN(id)) {
+      ids.push(id);
+    }
+  }
+  return ids;
+};
 
 const useTechTree = (initialNodes: Node[]) => {
-  const [nodes, setNodes] = useState<Node[]>(initialNodes);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // Função para verificar se um nó pode ser selecionado
+  const getInitialState = (): Node[] => {
+    const selectedHex = searchParams.get("tech") || "";
+
+    if (!selectedHex) {
+      return initialNodes;
+    }
+
+    const selectedIds = decodeNodeIds(selectedHex);
+
+    return initialNodes.map((node) => ({
+      ...node,
+      isSelected: node.id === 0 || selectedIds.includes(node.id),
+    }));
+  };
+
+  const [nodes, setNodes] = useState<Node[]>(getInitialState());
+
+  const updateURL = useCallback(
+    (selectedIds: number[]) => {
+      const idsForURL = selectedIds.filter((id) => id !== 0);
+
+      if (idsForURL.length === 0) {
+        setSearchParams(
+          (params) => {
+            params.delete("tech");
+            return params;
+          },
+          { replace: true }
+        );
+      } else {
+        const hexString = encodeNodeIds(idsForURL);
+        setSearchParams({ tech: hexString }, { replace: true });
+      }
+    },
+    [setSearchParams]
+  );
+
+  useEffect(() => {
+    const selectedIds = nodes
+      .filter((node) => node.isSelected)
+      .map((node) => node.id);
+
+    updateURL(selectedIds);
+  }, [nodes, updateURL]);
+
   const canSelectNode = useCallback(
-    (nodeId: string) => {
+    (nodeId: number) => {
       const node = nodes.find((n) => n.id === nodeId);
 
       if (!node) return false;
 
-      // Se o nó não tem dependências, pode ser selecionado
       if (!node.dependsOn) return true;
 
-      // Verifica se o nó pai está selecionado
       const parentNode = nodes.find((n) => n.id === node.dependsOn);
       return parentNode?.isSelected || false;
     },
     [nodes]
   );
 
-  // Função que garante consistência durante a atualização
   const toggleNode = useCallback(
-    (nodeId: string) => {
+    (nodeId: number) => {
       setNodes((prevNodes) => {
-        // 1. Cria cópia dos nós
         const updatedNodes = [...prevNodes];
 
-        // 2. Encontra o índice do nó clicado
         const nodeIndex = updatedNodes.findIndex((n) => n.id === nodeId);
         if (nodeIndex === -1) return prevNodes;
 
         const node = updatedNodes[nodeIndex];
 
-        // 3. Lógica de seleção
         if (!node.isSelected) {
-          // Verifica se pode selecionar
           if (!canSelectNode(nodeId)) {
             return prevNodes;
           }
-          // Seleciona o nó
           updatedNodes[nodeIndex] = { ...node, isSelected: true };
         } else {
-          // 4. Lógica de deseleção (inclui filhos)
           updatedNodes[nodeIndex] = { ...node, isSelected: false };
 
-          // Função auxiliar para deselecionar filhos recursivamente
-          const deselectChildren = (parentId: string) => {
+          const deselectChildren = (parentId: number) => {
             const parent = updatedNodes.find((n) => n.id === parentId);
             if (!parent) return;
 
@@ -56,18 +115,15 @@ const useTechTree = (initialNodes: Node[]) => {
                 (n) => n.id === childId
               );
               if (childIndex !== -1) {
-                // Deseleciona o filho
                 updatedNodes[childIndex] = {
                   ...updatedNodes[childIndex],
                   isSelected: false,
                 };
-                // Deseleciona os filhos do filho (recursivo)
-                deselectChildren(childId);
+                deselectChildren(updatedNodes[childIndex].id);
               }
             });
           };
 
-          // Inicia a deseleção em cascata
           deselectChildren(nodeId);
         }
 

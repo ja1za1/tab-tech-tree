@@ -1,8 +1,14 @@
+import { memo, useCallback } from "react";
 import { cn } from "../lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
+const AUDIO_FILES = {
+  select: new Audio("/src/assets/on-select.mp3"),
+  unselect: new Audio("/src/assets/on-unselect.mp3"),
+};
+
 interface TechNodeProps {
-  id: string;
+  id: number;
   name: string;
   description: string[];
   imageSrc: string;
@@ -10,11 +16,11 @@ interface TechNodeProps {
   cost: number;
   isRemovable?: boolean;
   isSelected: boolean;
-  canSelectNode: (nodeId: string) => boolean;
-  handleNodeToggle: (nodeId: string) => void;
+  canSelectNode: (nodeId: number) => boolean;
+  handleNodeToggle: (nodeId: number) => void;
 }
 
-export default function TechNode({
+function TechNode({
   id,
   cost,
   description,
@@ -26,23 +32,25 @@ export default function TechNode({
   canSelectNode,
   handleNodeToggle,
 }: TechNodeProps) {
-  const onSelectAudio = new Audio("/src/assets/on-select.mp3");
-  const onUnselectAudio = new Audio("/src/assets/on-unselect.mp3");
+  const handleClick = useCallback(() => {
+    if (!isRemovable || !canSelectNode(id)) {
+      return;
+    }
+    if (isSelected) {
+      const audio = AUDIO_FILES.unselect.cloneNode() as HTMLAudioElement;
+      audio.play().catch((e) => console.error("Audio unselect play error:", e));
+    } else {
+      const audio = AUDIO_FILES.select.cloneNode() as HTMLAudioElement;
+      audio.play().catch((e) => console.error("Audio select play error:", e));
+    }
+    handleNodeToggle(id);
+  }, [canSelectNode, handleNodeToggle, id, isRemovable, isSelected]);
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <div
-          onClick={() => {
-            if (!isRemovable || !canSelectNode(id)) {
-              return;
-            }
-            if (isSelected) {
-              onUnselectAudio.play();
-            } else {
-              onSelectAudio.play();
-            }
-            handleNodeToggle(id);
-          }}
+          onClick={handleClick}
           className={cn(
             "text-[#8FA557] flex items-center hover:bg-[#01300b] bg-black absolute h-13 w-70 border-2 border-solid border-[#483214] rounded-full",
             isSelected ? "bg-[#011D07]" : "bg-black",
@@ -96,3 +104,5 @@ export default function TechNode({
     </Tooltip>
   );
 }
+
+export default memo(TechNode);
