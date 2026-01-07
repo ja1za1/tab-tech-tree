@@ -3,8 +3,8 @@ import { cn } from "../lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const AUDIO_FILES = {
-  select: new Audio("/src/assets/on-select.mp3"),
-  unselect: new Audio("/src/assets/on-unselect.mp3"),
+  select: new Audio("/src/assets/audio/on-select.mp3"),
+  unselect: new Audio("/src/assets/audio/on-unselect.mp3"),
 };
 
 interface TechNodeProps {
@@ -52,8 +52,8 @@ function TechNode({
         <div
           onClick={handleClick}
           className={cn(
-            "text-[#8FA557] flex items-center hover:bg-[#01300b] bg-black absolute h-13 w-70 border-2 border-solid border-[#483214] rounded-full",
-            isSelected ? "bg-[#011D07]" : "bg-black",
+            "text-[#8FA557] flex items-center hover:bg-[#01300b] bg-black absolute h-12 w-64 border-2 border-solid border-[#483214] rounded-full",
+            isSelected ? "bg-[#02410f]" : "bg-black",
             canSelectNode(id)
               ? "cursor-pointer"
               : "cursor-not-allowed opacity-50"
@@ -73,7 +73,7 @@ function TechNode({
           <div className="w-full flex flex-row items-center p-4 justify-between">
             <img
               className={cn(
-                "size-12 rounded-full border",
+                "size-11 rounded-full border",
                 isSelected ? "border-[#483214]" : "border-black"
               )}
               src={imageSrc}
