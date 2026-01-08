@@ -1,4 +1,15 @@
-import { NODE_IDS, type Node } from "./all-nodes";
+import { type Node } from "./all-nodes";
+import {
+  COLUMN_2_LEFT,
+  LINE_10_HEIGHT,
+  LINE_2_HEIGHT,
+  LINE_3_HEIGHT,
+  LINE_4_HEIGHT,
+  LINE_6_HEIGHT,
+  LINE_7_HEIGHT,
+  LINE_8_HEIGHT,
+} from "./line-columns-values";
+import { NODE_IDS } from "./node-ids";
 
 export const COLUMN_2_NODES: Node[] = [
   {
@@ -6,7 +17,7 @@ export const COLUMN_2_NODES: Node[] = [
     name: "Efficient Turbines",
     description: ["Mill: Energy Supply +30%"],
     imageSrc: "/src/assets/image/thunder.png",
-    position: { left: 640, top: 150 },
+    position: { left: COLUMN_2_LEFT, top: LINE_2_HEIGHT },
     cost: 120,
     dependsOn: NODE_IDS.BEARINGS_AND_PULLEYS,
     children: [],
@@ -20,7 +31,7 @@ export const COLUMN_2_NODES: Node[] = [
       "Extra unit at start: Soldier",
     ],
     imageSrc: "/src/assets/image/stone-door.png",
-    position: { left: 640, top: 205 },
+    position: { left: COLUMN_2_LEFT, top: LINE_3_HEIGHT },
     cost: 100,
     children: [],
     dependsOn: NODE_IDS.ASSAULT_RIFLE,
@@ -31,7 +42,7 @@ export const COLUMN_2_NODES: Node[] = [
     name: "Hunting Weapons",
     description: ["Hunterman Cottage: Food generation +20%"],
     imageSrc: "/src/assets/image/corn.png",
-    position: { left: 640, top: 260 },
+    position: { left: COLUMN_2_LEFT, top: LINE_4_HEIGHT },
     cost: 100,
     children: [],
     dependsOn: NODE_IDS.ASSAULT_RIFLE,
@@ -42,7 +53,7 @@ export const COLUMN_2_NODES: Node[] = [
     name: "Mercenaries II",
     description: ["Extra unit at start: Sniper"],
     imageSrc: "/src/assets/image/potion.png",
-    position: { left: 640, top: 350 },
+    position: { left: COLUMN_2_LEFT, top: LINE_6_HEIGHT },
     cost: 100,
     children: [],
     dependsOn: NODE_IDS.MERCENARIES_I,
@@ -53,7 +64,7 @@ export const COLUMN_2_NODES: Node[] = [
     name: "Wood Buttresses",
     description: ["Wood Gate, Wood Wall, Wood Tower: +20% HP"],
     imageSrc: "/src/assets/image/castle.png",
-    position: { left: 640, top: 410 },
+    position: { left: COLUMN_2_LEFT, top: LINE_7_HEIGHT },
     cost: 120,
     children: [NODE_IDS.BARRICADES],
     dependsOn: NODE_IDS.HIGH_RISE_DEFENSES_I,
@@ -64,7 +75,7 @@ export const COLUMN_2_NODES: Node[] = [
     name: "Basic Supplies",
     description: ["+20 Food Supply", "+20 Energy Supply"],
     imageSrc: "/src/assets/image/corn.png",
-    position: { left: 640, top: 470 },
+    position: { left: COLUMN_2_LEFT, top: LINE_8_HEIGHT },
     cost: 100,
     children: [NODE_IDS.MEDICINE],
     dependsOn: NODE_IDS.LOGISTICS,
@@ -75,7 +86,7 @@ export const COLUMN_2_NODES: Node[] = [
     name: "Gold Transportation",
     description: ["+200 Gold every train"],
     imageSrc: "/src/assets/image/train.png",
-    position: { left: 640, bottom: 90 },
+    position: { left: COLUMN_2_LEFT, top: LINE_10_HEIGHT },
     cost: 100,
     children: [NODE_IDS.WOOD_TRANSPORTATION],
     dependsOn: NODE_IDS.LOGISTICS,

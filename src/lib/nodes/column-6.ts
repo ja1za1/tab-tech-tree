@@ -1,0 +1,68 @@
+import type { Node } from "./all-nodes";
+import {
+  COLUMN_6_LEFT,
+  LINE_10_HEIGHT,
+  LINE_1_HEIGHT,
+  LINE_4_HEIGHT,
+  LINE_6_HEIGHT,
+  LINE_7_HEIGHT,
+} from "./line-columns-values";
+import { NODE_IDS } from "./node-ids";
+
+export const COLUMN_6_NODES: Node[] = [
+  {
+    id: NODE_IDS.LODGING,
+    name: "Lodging",
+    description: ["New building: Inn"],
+    imageSrc: "/src/assets/image/lodging.png",
+    position: { left: COLUMN_6_LEFT, top: LINE_1_HEIGHT },
+    cost: 140,
+    children: [NODE_IDS.GAMES_AND_GAMBLING],
+    dependsOn: NODE_IDS.COMMERCE,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.PREFABRICATED_PARTS,
+    name: "Prefabricated Parts",
+    description: ["Extra building at start: Ballista"],
+    imageSrc: "/src/assets/image/potion.png",
+    position: { left: COLUMN_6_LEFT, top: LINE_4_HEIGHT },
+    cost: 100,
+    children: [],
+    dependsOn: NODE_IDS.MECHANIZED_WEAPONS,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.TELESCOPIC_SIGHT,
+    name: "Telescopic Sight",
+    description: ["New unit: Sniper"],
+    imageSrc: "/src/assets/image/telescopic-sight.png",
+    position: { left: COLUMN_6_LEFT, top: LINE_6_HEIGHT },
+    cost: 140,
+    children: [],
+    dependsOn: NODE_IDS.ADVANCED_LENSES,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.GLOBAL_VISION,
+    name: "Global Vision",
+    description: ["New Wonder: The silent Beholder"],
+    imageSrc: "/src/assets/image/global-vision.png",
+    position: { left: COLUMN_6_LEFT, top: LINE_7_HEIGHT },
+    cost: 200,
+    children: [],
+    dependsOn: NODE_IDS.LONG_RANGE_RIFLE,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.STONE_TRANSPORTATION,
+    name: "Stone Transportation",
+    description: ["+8 Stone every train"],
+    imageSrc: "/src/assets/image/train.png",
+    position: { left: COLUMN_6_LEFT, top: LINE_10_HEIGHT },
+    cost: 160,
+    children: [NODE_IDS.IRON_TRANSPORTATION],
+    dependsOn: NODE_IDS.WOOD_TRANSPORTATION,
+    isSelected: false,
+  },
+];

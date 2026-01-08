@@ -4,7 +4,8 @@ import { ALL_NODES } from "@/lib/nodes/all-nodes";
 import TechNode from "./tech-node";
 
 export default function TechTree() {
-  const { nodes, toggleNode, canSelectNode } = useTechTree(ALL_NODES);
+  const { nodes, toggleNode, canSelectNode, selectionOrder, totalCost } =
+    useTechTree(ALL_NODES);
 
   const { scrollContainerRef, dragHandlers } = useDragging();
 
@@ -15,6 +16,14 @@ export default function TechTree() {
         src="/src/assets/image/tech-tree-board.png"
         alt=""
       />
+
+      <div className="fixed top-35 left-30 flex flex-col items-center">
+        <img src="/src/assets/image/potion.png" alt="" className="size-10" />
+        <span className="font-tab text-lg font-bold text-[#8FA557]">
+          {totalCost}
+        </span>
+        <span className="font-tab  text-[#8FA557]">Total Cost</span>
+      </div>
 
       <div className="fixed inset-0 z-0">
         <div
@@ -33,6 +42,11 @@ export default function TechTree() {
                 {...node}
                 canSelectNode={canSelectNode}
                 handleNodeToggle={toggleNode}
+                nodeSelectionOrder={
+                  node.isSelected
+                    ? selectionOrder.indexOf(node.id) + 1
+                    : undefined
+                }
               />
             ))}
           </div>

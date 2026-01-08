@@ -18,6 +18,7 @@ interface TechNodeProps {
   isSelected: boolean;
   canSelectNode: (nodeId: number) => boolean;
   handleNodeToggle: (nodeId: number) => void;
+  nodeSelectionOrder?: number;
 }
 
 function TechNode({
@@ -31,6 +32,7 @@ function TechNode({
   isSelected,
   canSelectNode,
   handleNodeToggle,
+  nodeSelectionOrder,
 }: TechNodeProps) {
   const handleClick = useCallback(() => {
     if (!isRemovable || !canSelectNode(id)) {
@@ -70,7 +72,12 @@ function TechNode({
               position.right !== undefined ? `${position.right}px` : undefined,
           }}
         >
-          <div className="w-full flex flex-row items-center p-4 justify-between">
+          <div className="w-full flex flex-row items-center p-4 justify-between relative">
+            {nodeSelectionOrder !== undefined && (
+              <span className="font-tab text-lg text-[#8FA557] absolute left-1 -top-1">
+                {nodeSelectionOrder}
+              </span>
+            )}
             <img
               className={cn(
                 "size-11 rounded-full border",

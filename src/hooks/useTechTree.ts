@@ -1,15 +1,15 @@
 import type { Node } from "@/lib/nodes/all-nodes";
-import { useCallback, useEffect, useState } from "react";
+import { NODE_IDS } from "@/lib/nodes/node-ids";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const encodeNodeIds = (ids: number[]): string => {
-  const sortedIds = ids.filter((id) => id !== 0).sort((a, b) => a - b);
+const TREE_ORDER_PARAM = "order";
 
-  if (sortedIds.length === 0) {
+const encodeNodeIds = (ids: number[]): string => {
+  if (ids.length === 0) {
     return "";
   }
-
-  return sortedIds.map((id) => id.toString(16).padStart(2, "0")).join("");
+  return ids.map((id) => id.toString(16).padStart(2, "0")).join("");
 };
 
 const decodeNodeIds = (hexString: string): number[] => {
@@ -30,49 +30,64 @@ const useTechTree = (initialNodes: Node[]) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const getInitialState = (): Node[] => {
-    const selectedHex = searchParams.get("tech") || "";
+    const selectedNodesHex = searchParams.get(TREE_ORDER_PARAM) || "";
 
-    if (!selectedHex) {
+    if (!selectedNodesHex) {
       return initialNodes;
     }
 
-    const selectedIds = decodeNodeIds(selectedHex);
+    const selectedIds = decodeNodeIds(selectedNodesHex);
 
     return initialNodes.map((node) => ({
       ...node,
-      isSelected: node.id === 0 || selectedIds.includes(node.id),
+      isSelected:
+        node.id === NODE_IDS.STEAM_TECHNOLOGY || selectedIds.includes(node.id),
     }));
   };
 
+  const getInitialOrderState = (): number[] => {
+    const selectedNodesHex = searchParams.get(TREE_ORDER_PARAM) || "";
+
+    if (!selectedNodesHex) {
+      return [];
+    }
+
+    return decodeNodeIds(selectedNodesHex);
+  };
+
   const [nodes, setNodes] = useState<Node[]>(getInitialState());
+  const [selectionOrder, setSelectionOrder] = useState<number[]>(
+    getInitialOrderState()
+  );
+
+  const totalCost = useMemo(() => {
+    return nodes
+      .filter((node) => node.isSelected)
+      .reduce((sum, node) => sum + node.cost, 0);
+  }, [nodes]);
 
   const updateURL = useCallback(
     (selectedIds: number[]) => {
-      const idsForURL = selectedIds.filter((id) => id !== 0);
-
-      if (idsForURL.length === 0) {
+      if (selectedIds.length === 0) {
         setSearchParams(
           (params) => {
-            params.delete("tech");
+            params.delete(TREE_ORDER_PARAM);
             return params;
           },
           { replace: true }
         );
       } else {
-        const hexString = encodeNodeIds(idsForURL);
-        setSearchParams({ tech: hexString }, { replace: true });
+        const hexString = encodeNodeIds(selectedIds);
+        setSearchParams({ [TREE_ORDER_PARAM]: hexString }, { replace: true });
       }
     },
     [setSearchParams]
   );
 
   useEffect(() => {
-    const selectedIds = nodes
-      .filter((node) => node.isSelected)
-      .map((node) => node.id);
-
-    updateURL(selectedIds);
-  }, [nodes, updateURL]);
+    console.log("ATUALIZANDO ORDEM = ", selectionOrder);
+    updateURL(selectionOrder);
+  }, [selectionOrder, updateURL]);
 
   const canSelectNode = useCallback(
     (nodeId: number) => {
@@ -92,6 +107,7 @@ const useTechTree = (initialNodes: Node[]) => {
     (nodeId: number) => {
       setNodes((prevNodes) => {
         const updatedNodes = [...prevNodes];
+        let newOrder = [...selectionOrder];
 
         const nodeIndex = updatedNodes.findIndex((n) => n.id === nodeId);
         if (nodeIndex === -1) return prevNodes;
@@ -103,8 +119,14 @@ const useTechTree = (initialNodes: Node[]) => {
             return prevNodes;
           }
           updatedNodes[nodeIndex] = { ...node, isSelected: true };
+          // Adiciona ao FINAL da ordem
+          if (!newOrder.includes(nodeId)) {
+            newOrder.push(nodeId);
+          }
         } else {
           updatedNodes[nodeIndex] = { ...node, isSelected: false };
+          // Remove da ordem
+          newOrder = newOrder.filter((id) => id !== nodeId);
 
           const deselectChildren = (parentId: number) => {
             const parent = updatedNodes.find((n) => n.id === parentId);
@@ -119,6 +141,7 @@ const useTechTree = (initialNodes: Node[]) => {
                   ...updatedNodes[childIndex],
                   isSelected: false,
                 };
+                newOrder = newOrder.filter((id) => id !== childId);
                 deselectChildren(updatedNodes[childIndex].id);
               }
             });
@@ -127,13 +150,15 @@ const useTechTree = (initialNodes: Node[]) => {
           deselectChildren(nodeId);
         }
 
+        setSelectionOrder(newOrder);
+
         return updatedNodes;
       });
     },
-    [canSelectNode]
+    [canSelectNode, selectionOrder]
   );
 
-  return { nodes, toggleNode, canSelectNode };
+  return { nodes, toggleNode, canSelectNode, selectionOrder, totalCost };
 };
 
 export default useTechTree;

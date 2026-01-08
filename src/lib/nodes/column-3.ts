@@ -1,4 +1,10 @@
-import { NODE_IDS, type Node } from "./all-nodes";
+import { type Node } from "./all-nodes";
+import {
+  COLUMN_3_LEFT,
+  LINE_5_HEIGHT,
+  LINE_9_HEIGHT,
+} from "./line-columns-values";
+import { NODE_IDS } from "./node-ids";
 
 export const COLUMN_3_NODES: Node[] = [
   {
@@ -6,9 +12,14 @@ export const COLUMN_3_NODES: Node[] = [
     name: "Expert Workshops",
     description: ["New building: Wood Workshop", "New building: Cottage"],
     imageSrc: "/src/assets/image/wood-workshop.png",
-    position: { left: 940, top: 300 },
+    position: { left: COLUMN_3_LEFT, top: LINE_5_HEIGHT },
     cost: 240,
-    children: [NODE_IDS.CEREAL_FARMING],
+    children: [
+      NODE_IDS.CEREAL_FARMING,
+      NODE_IDS.REINFORCED_ARMOR,
+      NODE_IDS.REINFORCED_PROJECTILES,
+      NODE_IDS.OPTICS,
+    ],
     dependsOn: NODE_IDS.STEAM_TECHNOLOGY,
     isSelected: false,
   },
@@ -17,9 +28,9 @@ export const COLUMN_3_NODES: Node[] = [
     name: "Mechanized Storage",
     description: ["New building: Warehouse"],
     imageSrc: "/src/assets/image/warehouse.png",
-    position: { left: 940, bottom: 140 },
+    position: { left: COLUMN_3_LEFT, top: LINE_9_HEIGHT },
     cost: 120,
-    children: [],
+    children: [NODE_IDS.STRUCTURE_RECYCLING],
     dependsOn: NODE_IDS.LOGISTICS,
     isSelected: false,
   },

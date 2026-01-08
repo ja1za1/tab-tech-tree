@@ -1,4 +1,15 @@
-import { NODE_IDS, type Node } from "./all-nodes";
+import { type Node } from "./all-nodes";
+import {
+  COLUMN_1_LEFT,
+  INITIAL_LEFT,
+  LINE_2_HEIGHT,
+  LINE_4_HEIGHT,
+  LINE_5_HEIGHT,
+  LINE_6_HEIGHT,
+  LINE_7_HEIGHT,
+  LINE_9_HEIGHT,
+} from "./line-columns-values";
+import { NODE_IDS } from "./node-ids";
 
 export const COLUMN_1_NODES: Node[] = [
   {
@@ -6,7 +17,7 @@ export const COLUMN_1_NODES: Node[] = [
     name: "Steam Technology",
     description: ["Basic technology."],
     imageSrc: "/src/assets/image/potion.png",
-    position: { left: 20, top: 300 },
+    position: { left: INITIAL_LEFT, top: LINE_5_HEIGHT },
     cost: 0,
     isSelected: true,
     isRemovable: false,
@@ -23,7 +34,7 @@ export const COLUMN_1_NODES: Node[] = [
     name: "Bearings and Pulleys",
     description: ["Fisherman Cottage: food generation +20%"],
     imageSrc: "/src/assets/image/corn.png",
-    position: { left: 350, top: 150 },
+    position: { left: COLUMN_1_LEFT, top: LINE_2_HEIGHT },
     cost: 100,
     children: [NODE_IDS.EFFICIENT_TURBINES],
     dependsOn: 0,
@@ -34,7 +45,7 @@ export const COLUMN_1_NODES: Node[] = [
     name: "Assault Rifle",
     description: ["New unit: Soldier"],
     imageSrc: "/src/assets/image/soldier.png",
-    position: { left: 350, top: 260 },
+    position: { left: COLUMN_1_LEFT, top: LINE_4_HEIGHT },
     cost: 120,
     children: [NODE_IDS.MILITARY_TRAINING, NODE_IDS.HUNTING_WEAPONS],
     dependsOn: 0,
@@ -45,7 +56,7 @@ export const COLUMN_1_NODES: Node[] = [
     name: "Mercenaries I",
     description: ["Extra unit at start: Ranger"],
     imageSrc: "/src/assets/image/potion.png",
-    position: { left: 350, top: 350 },
+    position: { left: COLUMN_1_LEFT, top: LINE_6_HEIGHT },
     cost: 100,
     children: [NODE_IDS.MERCENARIES_II],
     dependsOn: 0,
@@ -56,7 +67,7 @@ export const COLUMN_1_NODES: Node[] = [
     name: "High-Rise Defenses I",
     description: ["New structure: Wooden Tower"],
     imageSrc: "/src/assets/image/wooden-tower.png",
-    position: { left: 350, top: 410 },
+    position: { left: COLUMN_1_LEFT, top: LINE_7_HEIGHT },
     cost: 100,
     isSelected: false,
     dependsOn: 0,
@@ -67,7 +78,7 @@ export const COLUMN_1_NODES: Node[] = [
     name: "Logistics",
     description: ["+40 Gold income", "+20 Resource Storage"],
     imageSrc: "/src/assets/image/logistics.png",
-    position: { left: 350, bottom: 140 },
+    position: { left: COLUMN_1_LEFT, top: LINE_9_HEIGHT },
     cost: 100,
     isSelected: false,
     dependsOn: 0,

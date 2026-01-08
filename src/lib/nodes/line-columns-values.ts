@@ -1,0 +1,20 @@
+export const INITIAL_LEFT = 20;
+export const COLUMN_1_LEFT = 350;
+export const COLUMN_2_LEFT = 650;
+export const COLUMN_3_LEFT = 970;
+export const COLUMN_4_LEFT = 1300;
+export const COLUMN_5_LEFT = 1600;
+export const COLUMN_6_LEFT = 1900;
+export const COLUMN_7_LEFT = 640;
+export const COLUMN_8_LEFT = 640;
+
+export const LINE_1_HEIGHT = 95;
+export const LINE_2_HEIGHT = 150;
+export const LINE_3_HEIGHT = 205;
+export const LINE_4_HEIGHT = 260;
+export const LINE_5_HEIGHT = 315;
+export const LINE_6_HEIGHT = 370;
+export const LINE_7_HEIGHT = 425;
+export const LINE_8_HEIGHT = 480;
+export const LINE_9_HEIGHT = 535;
+export const LINE_10_HEIGHT = 590;
