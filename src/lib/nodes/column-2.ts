@@ -1,4 +1,4 @@
-import { type Node } from "./all-nodes";
+import type { Node } from "../utils";
 import {
   COLUMN_2_LEFT,
   LINE_10_HEIGHT,

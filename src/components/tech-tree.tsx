@@ -29,7 +29,7 @@ export default function TechTree() {
         <div
           ref={scrollContainerRef}
           {...dragHandlers}
-          className="absolute left-[5%] right-[5%] top-[12%] bottom-[12%] overflow-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+          className="absolute select-none left-[5%] right-[5%] top-[12%] bottom-[12%] overflow-auto scrollbar-hide cursor-grab active:cursor-grabbing"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",

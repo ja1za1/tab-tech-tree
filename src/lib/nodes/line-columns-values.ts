@@ -5,8 +5,11 @@ export const COLUMN_3_LEFT = 970;
 export const COLUMN_4_LEFT = 1300;
 export const COLUMN_5_LEFT = 1600;
 export const COLUMN_6_LEFT = 1900;
-export const COLUMN_7_LEFT = 640;
-export const COLUMN_8_LEFT = 640;
+export const COLUMN_7_LEFT = 2230;
+export const COLUMN_8_LEFT = 2560;
+export const COLUMN_9_LEFT = 2860;
+export const COLUMN_10_LEFT = 3160;
+export const COLUMN_11_LEFT = 3460;
 
 export const LINE_1_HEIGHT = 95;
 export const LINE_2_HEIGHT = 150;
