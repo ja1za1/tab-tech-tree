@@ -19,6 +19,7 @@ export const COLUMN_3_NODES: Node[] = [
       NODE_IDS.REINFORCED_ARMOR,
       NODE_IDS.REINFORCED_PROJECTILES,
       NODE_IDS.OPTICS,
+      NODE_IDS.ADVANCED_CONSTRUCTION,
     ],
     dependsOn: NODE_IDS.STEAM_TECHNOLOGY,
     isSelected: false,
