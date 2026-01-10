@@ -1,5 +1,8 @@
 import type { Node } from "../utils";
 import { COLUMN_1_NODES } from "./column-1";
+import { COLUMN_10_NODES } from "./column-10";
+import { COLUMN_11_NODES } from "./column-11";
+import { COLUMN_12_NODES } from "./column-12";
 import { COLUMN_2_NODES } from "./column-2";
 import { COLUMN_3_NODES } from "./column-3";
 import { COLUMN_4_NODES } from "./column-4";
@@ -19,4 +22,7 @@ export const ALL_NODES: Node[] = [
   ...COLUMN_7_NODES,
   ...COLUMN_8_NODES,
   ...COLUMN_9_NODES,
+  ...COLUMN_10_NODES,
+  ...COLUMN_11_NODES,
+  ...COLUMN_12_NODES,
 ];

@@ -18,7 +18,11 @@ export default function TechTree() {
       />
 
       <div className="fixed top-35 left-30 flex flex-col items-center">
-        <img src="/src/assets/image/potion.png" alt="" className="size-10" />
+        <img
+          src="/src/assets/image/total-cost.png"
+          alt=""
+          className="size-10"
+        />
         <span className="font-tab text-lg font-bold text-[#8FA557]">
           {totalCost}
         </span>

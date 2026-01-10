@@ -22,7 +22,7 @@ export const COLUMN_7_NODES: Node[] = [
     id: NODE_IDS.ADVANCED_CONSTRUCTION,
     name: "Advanced Construction",
     description: ["New building: Stone Workshop", "New building: Stone House"],
-    imageSrc: "/src/assets/image/potion.png",
+    imageSrc: "/src/assets/image/advanced-construction.png",
     position: { left: COLUMN_7_LEFT, top: LINE_5_HEIGHT },
     cost: 260,
     children: [
@@ -31,6 +31,7 @@ export const COLUMN_7_NODES: Node[] = [
       NODE_IDS.ADVANCED_TRAINING,
       NODE_IDS.CONCRETE,
       NODE_IDS.CHEMISTRY,
+      NODE_IDS.ADVANCED_MACHINERY,
     ],
     dependsOn: NODE_IDS.EXPERT_WORKSHOPS,
     isSelected: false,
