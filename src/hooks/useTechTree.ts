@@ -1,5 +1,5 @@
-import type { Node } from "@/lib/nodes/all-nodes";
 import { NODE_IDS } from "@/lib/nodes/node-ids";
+import type { Node } from "@/lib/utils";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -85,7 +85,6 @@ const useTechTree = (initialNodes: Node[]) => {
   );
 
   useEffect(() => {
-    console.log("ATUALIZANDO ORDEM = ", selectionOrder);
     updateURL(selectionOrder);
   }, [selectionOrder, updateURL]);
 

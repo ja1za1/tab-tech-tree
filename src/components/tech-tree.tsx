@@ -1,32 +1,40 @@
 import { useDragging } from "@/hooks/useDragging";
 import useTechTree from "@/hooks/useTechTree";
+import useWindowHeight from "@/hooks/useWindowDimensions";
 import { ALL_NODES } from "@/lib/nodes/all-nodes";
+import { cn } from "@/lib/utils";
+import ShareButton from "./share-button";
+import ShowTotalCost from "./show-total-cost";
 import TechNode from "./tech-node";
+import TechTreeConnections from "./tech-tree-conections";
+import TreePicks from "./tree-picks";
 
 export default function TechTree() {
   const { nodes, toggleNode, canSelectNode, selectionOrder, totalCost } =
     useTechTree(ALL_NODES);
-
   const { scrollContainerRef, dragHandlers } = useDragging();
+  const { width, height } = useWindowHeight();
+
+  const THRESHOLD_HEIGHT = 935;
+  const THRESHOLD_WIDTH = 1024;
+  const IS_THRESHOLD_REACHED =
+    height <= THRESHOLD_HEIGHT && width <= THRESHOLD_WIDTH;
 
   return (
-    <div className="min-h-screen w-full bg-[#041200] relative overflow-auto min-[900px]:overflow-hidden">
+    <div className="min-h-dvh w-full bg-[#041200] relative overflow-auto min-[900px]:overflow-hidden">
       <img
-        className="hidden min-[900px]:block fixed inset-0 w-full h-screen object-fill pointer-events-none z-10"
+        className="hidden min-[1150px]:block fixed inset-0 w-full h-screen object-fill pointer-events-none z-10"
         src="/src/assets/image/tech-tree-board.png"
         alt=""
       />
-
-      <div className="fixed top-35 left-30 flex flex-col items-center">
-        <img
-          src="/src/assets/image/total-cost.png"
-          alt=""
-          className="size-10"
-        />
-        <span className="font-tab text-lg font-bold text-[#8FA557]">
-          {totalCost}
-        </span>
-        <span className="font-tab  text-[#8FA557]">Total Cost</span>
+      <div
+        className={cn(
+          "flex flex-row justify-between items-center w-80 fixed z-10 ",
+          IS_THRESHOLD_REACHED ? "top-5 left-5" : "top-35 left-35"
+        )}
+      >
+        <ShowTotalCost totalCost={totalCost} />
+        <ShareButton />
       </div>
 
       <div className="fixed inset-0 z-0">
@@ -39,7 +47,8 @@ export default function TechTree() {
             msOverflowStyle: "none",
           }}
         >
-          <div className="min-h-full">
+          <div className="min-h-full relative">
+            <TechTreeConnections nodes={nodes} />
             {nodes.map((node) => (
               <TechNode
                 key={node.id}
@@ -57,16 +66,16 @@ export default function TechTree() {
         </div>
       </div>
 
-      {/* <div className="min-[900px]:hidden overflow-auto p-4">
-        {nodes.map((node) => (
-          <TechNode
-            key={node.id}
-            {...node}
-            canSelectNode={canSelectNode}
-            handleNodeToggle={toggleNode}
-          />
-        ))}
-      </div> */}
+      <div
+        className={cn(
+          "fixed z-10 select-none",
+          IS_THRESHOLD_REACHED
+            ? "bottom-5 left-5 size-15"
+            : "bottom-40 left-15 size-18"
+        )}
+      >
+        <TreePicks nodes={nodes} selectionOrder={selectionOrder} />
+      </div>
     </div>
   );
 }

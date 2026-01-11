@@ -62,7 +62,11 @@ export const COLUMN_12_NODES: Node[] = [
     imageSrc: "/src/assets/image/stone-door.png",
     position: { left: COLUMN_12_LEFT, top: LINE_8_HEIGHT },
     cost: 120,
-    children: [NODE_IDS.TUNGSTEN_TOOLS],
+    children: [
+      NODE_IDS.TUNGSTEN_TOOLS,
+      NODE_IDS.TUNGSTEN_SAW,
+      NODE_IDS.BARBED_WIRE,
+    ],
     dependsOn: NODE_IDS.ADVANCED_MACHINERY,
     isSelected: false,
   },

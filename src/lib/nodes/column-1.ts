@@ -27,6 +27,7 @@ export const COLUMN_1_NODES: Node[] = [
       NODE_IDS.MERCENARIES_I,
       NODE_IDS.HIGH_RISE_DEFENSES_I,
       NODE_IDS.LOGISTICS,
+      NODE_IDS.EXPERT_WORKSHOPS,
     ],
   },
   {

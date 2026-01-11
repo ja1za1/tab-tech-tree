@@ -1,0 +1,68 @@
+import type { Node } from "../utils";
+import {
+  COLUMN_14_LEFT,
+  LINE_1_HEIGHT,
+  LINE_2_HEIGHT,
+  LINE_3_HEIGHT,
+  LINE_6_HEIGHT,
+  LINE_9_HEIGHT,
+} from "./line-columns-values";
+import { NODE_IDS } from "./node-ids";
+
+export const COLUMN_14_NODES: Node[] = [
+  {
+    id: NODE_IDS.MECHANICAL_EXOSKELETONS,
+    name: "Mechanical Exoskeletons",
+    description: ["New unit: Thanatos"],
+    imageSrc: "/src/assets/image/mechanical-exoskeletons.png",
+    position: { left: COLUMN_14_LEFT, top: LINE_1_HEIGHT },
+    cost: 180,
+    children: [],
+    dependsOn: NODE_IDS.PNEUMATIC_JOINTS,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.ARTICULATED_VEHICLES,
+    name: "Articulated Vehicles",
+    description: ["New unit: Titan"],
+    imageSrc: "/src/assets/image/articulated-vehicles.png",
+    position: { left: COLUMN_14_LEFT, top: LINE_2_HEIGHT },
+    cost: 180,
+    children: [],
+    dependsOn: NODE_IDS.PNEUMATIC_JOINTS,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.COMBAT_ARTILLERY,
+    name: "Combat Artillery",
+    description: ["New building: Executor"],
+    imageSrc: "/src/assets/image/combat-artillery.png",
+    position: { left: COLUMN_14_LEFT, top: LINE_3_HEIGHT },
+    cost: 180,
+    children: [],
+    dependsOn: NODE_IDS.RADAR,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.CHEMICAL_TRANSMUTATION,
+    name: "Chemical Transmutation",
+    description: ["New wonder: The Atlas Transmutor"],
+    imageSrc: "/src/assets/image/chemical-transmutation.png",
+    position: { left: COLUMN_14_LEFT, top: LINE_6_HEIGHT },
+    cost: 200,
+    children: [],
+    dependsOn: NODE_IDS.BIOCHEMISTRY,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.CARBON_STEEL,
+    name: "Carbon Steel",
+    description: ["Wire Fence Trap: +30% Life"],
+    imageSrc: "/src/assets/image/castle.png",
+    position: { left: COLUMN_14_LEFT, top: LINE_9_HEIGHT },
+    cost: 140,
+    children: [],
+    dependsOn: NODE_IDS.BARBED_WIRE,
+    isSelected: false,
+  },
+];

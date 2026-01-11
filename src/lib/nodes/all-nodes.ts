@@ -3,6 +3,11 @@ import { COLUMN_1_NODES } from "./column-1";
 import { COLUMN_10_NODES } from "./column-10";
 import { COLUMN_11_NODES } from "./column-11";
 import { COLUMN_12_NODES } from "./column-12";
+import { COLUMN_13_NODES } from "./column-13";
+import { COLUMN_14_NODES } from "./column-14";
+import { COLUMN_15_NODES } from "./column-15";
+import { COLUMN_16_NODES } from "./column-16";
+import { COLUMN_17_NODES } from "./column-17";
 import { COLUMN_2_NODES } from "./column-2";
 import { COLUMN_3_NODES } from "./column-3";
 import { COLUMN_4_NODES } from "./column-4";
@@ -25,4 +30,9 @@ export const ALL_NODES: Node[] = [
   ...COLUMN_10_NODES,
   ...COLUMN_11_NODES,
   ...COLUMN_12_NODES,
+  ...COLUMN_13_NODES,
+  ...COLUMN_14_NODES,
+  ...COLUMN_15_NODES,
+  ...COLUMN_16_NODES,
+  ...COLUMN_17_NODES,
 ];

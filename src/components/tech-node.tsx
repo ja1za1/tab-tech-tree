@@ -40,9 +40,11 @@ function TechNode({
     }
     if (isSelected) {
       const audio = AUDIO_FILES.unselect.cloneNode() as HTMLAudioElement;
+      audio.volume = 0.4;
       audio.play().catch((e) => console.error("Audio unselect play error:", e));
     } else {
       const audio = AUDIO_FILES.select.cloneNode() as HTMLAudioElement;
+      audio.volume = 0.4;
       audio.play().catch((e) => console.error("Audio select play error:", e));
     }
     handleNodeToggle(id);
@@ -54,7 +56,7 @@ function TechNode({
         <div
           onClick={handleClick}
           className={cn(
-            "text-[#8FA557] flex items-center hover:bg-[#01300b] bg-black absolute h-12 w-64 border-2 border-solid border-[#483214] rounded-full",
+            "text-[#8FA557] flex items-center hover:bg-[#01300b] bg-black absolute h-12 w-64 border-2 border-solid border-[#483214] rounded-full z-10",
             isSelected ? "bg-[#02410f]" : "bg-black",
             canSelectNode(id)
               ? "cursor-pointer"

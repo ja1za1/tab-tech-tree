@@ -11,6 +11,11 @@ export const COLUMN_9_LEFT = 2860;
 export const COLUMN_10_LEFT = 3160;
 export const COLUMN_11_LEFT = 3490;
 export const COLUMN_12_LEFT = 3820;
+export const COLUMN_13_LEFT = 4120;
+export const COLUMN_14_LEFT = 4420;
+export const COLUMN_15_LEFT = 4750;
+export const COLUMN_16_LEFT = 5080;
+export const COLUMN_17_LEFT = 5380;
 
 export const LINE_1_HEIGHT = 95;
 export const LINE_2_HEIGHT = 150;
