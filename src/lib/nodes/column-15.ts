@@ -11,7 +11,7 @@ export const COLUMN_15_NODES: Node[] = [
     id: NODE_IDS.HIGH_TECHNOLOGY,
     name: "High Technology",
     description: ["Building time -10%"],
-    imageSrc: "/src/assets/image/potion.png",
+    imageSrc: "/assets/image/potion.png",
     position: { left: COLUMN_15_LEFT, top: LINE_5_HEIGHT },
     cost: 300,
     children: [
@@ -27,7 +27,7 @@ export const COLUMN_15_NODES: Node[] = [
     id: NODE_IDS.INGOT_TRANSPORT,
     name: "Ingot Transport",
     description: ["+300 gold every train"],
-    imageSrc: "/src/assets/image/train.png",
+    imageSrc: "/assets/image/train.png",
     position: { left: COLUMN_15_LEFT, top: LINE_10_HEIGHT },
     cost: 300,
     children: [NODE_IDS.ARTILLERY_TRANSPORT],

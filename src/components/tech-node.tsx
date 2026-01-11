@@ -3,8 +3,8 @@ import { cn } from "../lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const AUDIO_FILES = {
-  select: new Audio("/src/assets/audio/on-select.mp3"),
-  unselect: new Audio("/src/assets/audio/on-unselect.mp3"),
+  select: new Audio("/assets/audio/on-select.mp3"),
+  unselect: new Audio("/assets/audio/on-unselect.mp3"),
 };
 
 interface TechNodeProps {

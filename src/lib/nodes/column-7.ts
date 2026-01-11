@@ -11,7 +11,7 @@ export const COLUMN_7_NODES: Node[] = [
     id: NODE_IDS.GAMES_AND_GAMBLING,
     name: "Games and Gambling",
     description: ["Inn: Mercenaries arrive every 3 days"],
-    imageSrc: "/src/assets/image/potion.png",
+    imageSrc: "/assets/image/potion.png",
     position: { left: COLUMN_7_LEFT, top: LINE_1_HEIGHT },
     cost: 120,
     children: [],
@@ -22,7 +22,7 @@ export const COLUMN_7_NODES: Node[] = [
     id: NODE_IDS.ADVANCED_CONSTRUCTION,
     name: "Advanced Construction",
     description: ["New building: Stone Workshop", "New building: Stone House"],
-    imageSrc: "/src/assets/image/advanced-construction.png",
+    imageSrc: "/assets/image/advanced-construction.png",
     position: { left: COLUMN_7_LEFT, top: LINE_5_HEIGHT },
     cost: 260,
     children: [

@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "simsun";
-  src: local("simsun"), url(.assets/simsun.ttf) format("ttf");
+  src: local("simsun"), url(/assets/simsun.ttf) format("ttf");
 }
 
 @theme {

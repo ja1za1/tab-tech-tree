@@ -33,7 +33,7 @@ export default function TreePicks({ selectionOrder, nodes }: ThreePicksProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <div className="w-full cursor-pointer hover:bg-[#01300b] h-full flex items-center rounded-full shadow-md bg-[#02410f] border-2 border-solid border-[#483214] p-4">
-          <img src="/src/assets/image/config.png" />
+          <img src="/assets/image/config.png" />
         </div>
       </DialogTrigger>
       <DialogContent className="bg-[#1E2B01] border-2  border-[#483214] font-tab max-h-100 overflow-y-auto">

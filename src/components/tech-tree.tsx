@@ -24,7 +24,7 @@ export default function TechTree() {
     <div className="min-h-dvh w-full bg-[#041200] relative overflow-auto min-[900px]:overflow-hidden">
       <img
         className="hidden min-[1150px]:block fixed inset-0 w-full h-screen object-fill pointer-events-none z-10"
-        src="/src/assets/image/tech-tree-board.png"
+        src={"/assets/image/tech-tree-board.png"}
         alt=""
       />
       <div

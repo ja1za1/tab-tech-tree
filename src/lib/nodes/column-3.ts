@@ -11,7 +11,7 @@ export const COLUMN_3_NODES: Node[] = [
     id: NODE_IDS.EXPERT_WORKSHOPS,
     name: "Expert Workshops",
     description: ["New building: Wood Workshop", "New building: Cottage"],
-    imageSrc: "/src/assets/image/wood-workshop.png",
+    imageSrc: "/assets/image/wood-workshop.png",
     position: { left: COLUMN_3_LEFT, top: LINE_5_HEIGHT },
     cost: 240,
     children: [
@@ -28,7 +28,7 @@ export const COLUMN_3_NODES: Node[] = [
     id: NODE_IDS.MECHANIZED_STORAGE,
     name: "Mechanized Storage",
     description: ["New building: Warehouse"],
-    imageSrc: "/src/assets/image/warehouse.png",
+    imageSrc: "/assets/image/warehouse.png",
     position: { left: COLUMN_3_LEFT, top: LINE_9_HEIGHT },
     cost: 120,
     children: [NODE_IDS.STRUCTURE_RECYCLING],

@@ -141,7 +141,7 @@ To add, remove, or modify technologies, edit the corresponding column file or cr
   id: NODE_IDS.SOME_TECHNOLOGY,
   name: "Technology Name",
   description: ["Description line 1", "Description line 2"],
-  imageSrc: "/src/assets/image/tech-image.png",
+  imageSrc: "/assets/image/tech-image.png",
   position: { left: 320, top: 200 },
   cost: 100,
   dependsOn: NODE_IDS.PARENT_TECHNOLOGY,
