@@ -1,113 +1,173 @@
-# TAB Tech Tree - Montador de Árvore de Tecnologias
+# TAB Tech Tree - Technology Tree Builder
 
-Um montador interativo de árvore de tecnologias do jogo **They Are Billions**, desenvolvido com React. Este projeto recria fielmente o design e a experiência visual da árvore de tecnologias do jogo original, proporcionando uma interface imersiva e intuitiva para criar e visualizar diferentes combinações de tecnologias.
+An interactive technology tree builder for **They Are Billions**, developed with React. This project faithfully recreates the design and visual experience of the original game's technology tree, providing an immersive and intuitive interface to create and visualize different technology combinations.
 
-## 🎮 Sobre o Projeto
+## 🎮 About the Project
 
-Este projeto permite que jogadores e fãs de **They Are Billions** planejem e compartilhem suas estratégias de tecnologia de forma visual e interativa. A interface é baseada totalmente no design da árvore de tecnologias do próprio jogo, garantindo uma experiência familiar e imersiva.
+This project allows **They Are Billions** players and fans to plan and share their technology strategies in a visual and interactive way. The interface is entirely based on the design of the game's own technology tree, ensuring a familiar and immersive experience. Build your perfect tech path, track costs, and share your builds with others through shareable URLs.
 
-### ✨ Funcionalidades
+### ✨ Features
 
-- **Interface Visual Autêntica**: Design fiel à árvore de tecnologias do jogo original
-- **Seleção Interativa**: Clique para selecionar/desselecionar tecnologias
-- **Validação de Dependências**: Sistema que garante que apenas tecnologias com pré-requisitos atendidos possam ser selecionadas
-- **Arrastar e Navegar**: Arraste a tela para explorar toda a árvore de tecnologias
-- **Compartilhamento via URL**: O estado da árvore é salvo na URL, permitindo compartilhar suas configurações
-- **Efeitos Sonoros**: Sons de seleção/desseleção para maior imersão
-- **Tooltips Informativos**: Passe o mouse sobre as tecnologias para ver detalhes completos
-- **Responsivo**: Funciona em diferentes tamanhos de tela
+- **Authentic Visual Interface**: Design faithful to the original game's technology tree with background board image
+- **Interactive Selection**: Click to select/deselect technologies with visual feedback
+- **Selection Order Tracking**: Selected technologies are numbered in the order they were chosen
+- **Dependency Validation**: System that ensures only technologies with met prerequisites can be selected
+- **Visual Connections**: Lines connecting parent and child technologies for better visualization
+- **Total Cost Calculator**: Real-time calculation of the total cost of selected technologies
+- **Drag and Navigate**: Drag the screen to explore the entire technology tree
+- **URL Sharing**: The tree state is saved in the URL, allowing you to share your configurations
+- **Share Button**: One-click copy to clipboard functionality for easy sharing
+- **Tree Picks Dialog**: View all selected technologies in order with accumulated costs
+- **Sound Effects**: Selection/deselection sounds for greater immersion
+- **Informative Tooltips**: Hover over technologies to see complete details
+- **Responsive Design**: Adapts to different screen sizes with optimized layouts
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Technologies Used
 
-- **React 19** - Biblioteca JavaScript para construção de interfaces
-- **TypeScript** - Tipagem estática para maior segurança de código
-- **Vite** - Build tool moderna e rápida
-- **Tailwind CSS** - Framework CSS utilitário para estilização
-- **Shadcn** - Componentes acessíveis (Tooltip)
-- **React Router DOM** - Gerenciamento de rotas e parâmetros de URL
+- **React 19** - JavaScript library for building interfaces
+- **TypeScript** - Static typing for greater code safety
+- **Vite** - Modern and fast build tool
+- **Tailwind CSS** - Utility-first CSS framework for styling
+- **Shadcn/UI** - Accessible component library (Tooltip, Dialog)
+- **Radix UI** - Primitive UI components (Dialog, Tooltip, Slot)
+- **React Router DOM** - Route management and URL parameters
+- **Lucide React** - Icon library
+- **React Icons** - Additional icon library
 
-## 📦 Instalação
+## 📦 Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd tab-tech-tree
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-3. Execute o projeto em modo de desenvolvimento:
+3. Run the project in development mode:
 
 ```bash
 pnpm dev
 ```
 
-4. Acesse `http://localhost:5173` no seu navegador
+4. Access `http://localhost:5173` in your browser
 
-## 🛠️ Scripts Disponíveis
+## 🛠️ Available Scripts
 
-- `pnpm dev` - Inicia o servidor de desenvolvimento
-- `pnpm build` - Cria uma build de produção
-- `pnpm preview` - Visualiza a build de produção
-- `pnpm lint` - Executa o linter para verificar o código
+- `pnpm dev` - Starts the development server
+- `pnpm build` - Creates a production build
+- `pnpm preview` - Previews the production build
+- `pnpm lint` - Runs the linter to check the code
 
-## 🎯 Como Usar
+## 🎯 How to Use
 
-1. **Selecionar Tecnologias**: Clique em qualquer tecnologia para selecioná-la (verde) ou desselecioná-la
-2. **Navegar pela Árvore**: Arraste a tela para explorar todas as tecnologias disponíveis
-3. **Ver Detalhes**: Passe o mouse sobre uma tecnologia para ver sua descrição completa
-4. **Compartilhar**: A URL é atualizada automaticamente com sua seleção atual - copie e compartilhe!
+1. **Select Technologies**: Click on any technology to select it (green) or deselect it
+2. **Navigate the Tree**: Drag the screen to explore all available technologies
+3. **View Details**: Hover over a technology to see its complete description
+4. **Track Selection Order**: Selected technologies show numbers indicating the order they were chosen
+5. **Monitor Costs**: The total cost of all selected technologies is displayed at the top
+6. **View Tree Picks**: Click the configuration icon at the bottom to see all selected technologies in order with accumulated costs
+7. **Share**: Click the "Share tree" button to copy the URL to your clipboard, or simply copy the URL from your browser
 
-### Regras de Dependência
+### Dependency Rules
 
-- Apenas tecnologias com pré-requisitos atendidos podem ser selecionadas
-- Ao desselecionar uma tecnologia, todas as tecnologias dependentes são automaticamente desselecionadas
-- A tecnologia base "Steam Technology" está sempre selecionada e não pode ser removida
+- Only technologies with met prerequisites can be selected
+- When deselecting a technology, all dependent technologies are automatically deselected
+- The base technology "Steam Technology" is always selected and cannot be removed
+- Technologies are numbered in the order they were selected
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 tab-tech-tree/
 ├── src/
-│   ├── components/        # Componentes React
-│   │   ├── tech-tree.tsx  # Componente principal da árvore
-│   │   ├── tech-node.tsx  # Componente de nó individual
-│   │   └── ui/            # Componentes de UI reutilizáveis
-│   ├── hooks/             # Custom hooks
-│   │   ├── useTechTree.ts # Lógica de gerenciamento da árvore
-│   │   └── useDragging.ts # Lógica de arrastar e scroll
-│   ├── lib/               # Utilitários e dados
-│   │   ├── nodes.ts       # Definição dos nós da árvore
-│   │   └── utils.ts       # Funções utilitárias
-│   └── assets/            # Recursos estáticos (imagens, áudios)
-└── public/                # Arquivos públicos
+│   ├── components/              # React components
+│   │   ├── tech-tree.tsx        # Main tree component
+│   │   ├── tech-node.tsx        # Individual node component
+│   │   ├── tech-tree-conections.tsx  # Visual connections between nodes
+│   │   ├── share-button.tsx     # Share/copy URL button
+│   │   ├── show-total-cost.tsx  # Total cost display
+│   │   ├── tree-picks.tsx       # Dialog showing selected nodes
+│   │   ├── node-card.tsx        # Card component for tree picks
+│   │   └── ui/                  # Reusable UI components
+│   │       ├── tooltip.tsx
+│   │       ├── dialog.tsx
+│   │       └── button.tsx
+│   ├── hooks/                   # Custom hooks
+│   │   ├── useTechTree.ts       # Tree management logic
+│   │   ├── useDragging.ts       # Drag and scroll logic
+│   │   └── useWindowDimensions.ts  # Window size tracking
+│   ├── lib/                     # Utilities and data
+│   │   ├── nodes/               # Node definitions organized by columns
+│   │   │   ├── all-nodes.ts     # Aggregated all nodes
+│   │   │   ├── column-1.ts      # Column 1 nodes
+│   │   │   ├── column-2.ts      # Column 2 nodes
+│   │   │   ├── ...              # Columns 3-17
+│   │   │   ├── node-ids.ts      # Node ID constants
+│   │   │   └── line-columns-values.ts # Values for absolute position of all nodes
+│   │   └── utils.ts             # Utility functions and types
+│   └── assets/                  # Static resources
+│       ├── image/               # Technology images and UI assets
+│       └── audio/               # Sound effects
+└── public/                      # Public files
 ```
 
-## 🎨 Personalização
+## 🎨 Customization
 
-As tecnologias são definidas no arquivo `src/lib/nodes.ts`. Você pode adicionar, remover ou modificar tecnologias editando o array `ALL_NODES`.
+Technologies are defined in the `src/lib/nodes/` directory, organized by columns. The main entry point is `all-nodes.ts`, which aggregates all nodes from individual column files.
 
-Cada nó possui as seguintes propriedades:
+To add, remove, or modify technologies, edit the corresponding column file or create a new one. Each node has the following properties:
 
-- `id`: Identificador único
-- `name`: Nome da tecnologia
-- `description`: Array de strings com a descrição
-- `imageSrc`: Caminho para a imagem da tecnologia
-- `position`: Posição na tela (left, top, bottom, right)
-- `cost`: Custo da tecnologia
-- `dependsOn`: ID da tecnologia pré-requisito (opcional)
-- `children`: Array de IDs das tecnologias filhas
-- `isRemovable`: Se a tecnologia pode ser removida (padrão: true)
+- `id`: Unique identifier (use constants from `node-ids.ts`)
+- `name`: Technology name
+- `description`: Array of strings with the description
+- `imageSrc`: Path to the technology image
+- `position`: Position on screen (left, top)
+- `cost`: Technology cost
+- `dependsOn`: Prerequisite technology ID
+- `children`: Array of child technology IDs
+- `isRemovable`: Whether the technology can be removed (default: true)
+- `isSelected`: Initial selection state (usually false, except for base technology)
 
-## 📝 Licença
+### Example Node Structure
 
-Este projeto é um projeto de fã e não está afiliado oficialmente com Numantian Games ou They Are Billions.
+```typescript
+{
+  id: NODE_IDS.SOME_TECHNOLOGY,
+  name: "Technology Name",
+  description: ["Description line 1", "Description line 2"],
+  imageSrc: "/src/assets/image/tech-image.png",
+  position: { left: 320, top: 200 },
+  cost: 100,
+  dependsOn: NODE_IDS.PARENT_TECHNOLOGY,
+  children: [NODE_IDS.CHILD_TECHNOLOGY_1, NODE_IDS.CHILD_TECHNOLOGY_2],
+  isSelected: false,
+}
+```
 
-## 🤝 Contribuições
+## 🔧 Technical Details
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+### URL Encoding
+
+The selected technologies are encoded in the URL using hexadecimal representation. The URL parameter `order` contains the selected node IDs in hexadecimal format, preserving the selection order.
+
+### State Management
+
+The application uses React hooks for state management:
+
+- `useTechTree`: Manages node selection, dependencies, and order tracking
+- `useDragging`: Handles drag-to-scroll functionality
+- `useWindowDimensions`: Tracks window size for responsive layout adjustments
+
+## 📝 License
+
+This project is a fan project and is not officially affiliated with Numantian Games or They Are Billions.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or pull requests.
