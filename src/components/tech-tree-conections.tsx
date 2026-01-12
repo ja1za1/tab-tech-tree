@@ -1,5 +1,6 @@
 "use client";
 
+import { useNode } from "@/context/node-content";
 import type { Node } from "@/lib/utils";
 import { useMemo } from "react";
 
@@ -10,6 +11,7 @@ interface TechTreeConnectionsProps {
 export default function TechTreeConnections({
   nodes,
 }: TechTreeConnectionsProps) {
+  const { isShowingDescription } = useNode();
   const { connections, dimensions } = useMemo(() => {
     const lines: Array<{
       x1: number;
@@ -23,21 +25,24 @@ export default function TechTreeConnections({
     let maxY = 0;
 
     nodes.forEach((node) => {
-      // Calcula as dimensões máximas da árvore
-      const nodeRight = (node.position.left ?? 0) + 264; // 264px é a largura do nodo
-      const nodeBottom = (node.position.top ?? 0) + 48; // 48px é a altura do nodo
+      const nodeRight = (node.position.left ?? 0) + 264;
+      const nodeBottom = (node.position.top ?? 0) + 48;
       maxX = Math.max(maxX, nodeRight);
       maxY = Math.max(maxY, nodeBottom);
 
       if (node.children && node.children.length > 0) {
-        const parentX = (node.position.left ?? 0) + 120; // Center of node (264px width / 2)
-        const parentY = (node.position.top ?? 0) + 24; // Center of node (48px height / 2)
+        const parentX = (node.position.left ?? 0) + 120;
+        const parentY = isShowingDescription
+          ? (node.position.top ?? 0) + 60
+          : (node.position.top ?? 0) + 24;
 
         node.children.forEach((childId) => {
           const childNode = nodes.find((n) => n.id === childId);
           if (childNode) {
             const childX = (childNode.position.left ?? 0) + 40;
-            const childY = (childNode.position.top ?? 0) + 24;
+            const childY = isShowingDescription
+              ? (childNode.position.top ?? 0) + 60
+              : (childNode.position.top ?? 0) + 24;
 
             lines.push({
               x1: parentX,
@@ -54,11 +59,11 @@ export default function TechTreeConnections({
     return {
       connections: lines,
       dimensions: {
-        width: maxX + 100, // Adiciona margem extra
+        width: maxX + 100,
         height: maxY + 100,
       },
     };
-  }, [nodes]);
+  }, [nodes, isShowingDescription]);
 
   return (
     <svg

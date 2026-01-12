@@ -1,18 +1,27 @@
+import { useNode } from "@/context/node-content";
 import { useDragging } from "@/hooks/useDragging";
 import useTechTree from "@/hooks/useTechTree";
 import useWindowHeight from "@/hooks/useWindowDimensions";
+import { ALL_NODES_WITH_DESCRIPTION } from "@/lib/nodes/withDescription/all-nodes";
 import { ALL_NODES_WITHOUT_DESCRIPTION } from "@/lib/nodes/withoutDescription/all-nodes";
 import { cn } from "@/lib/utils";
 import { MuteButton } from "./mute-button";
 import ShareButton from "./share-button";
+import { ShowDescriptionButton } from "./show-description-button";
 import ShowTotalCost from "./show-total-cost";
-import TechNode from "./tech-node";
 import TechTreeConnections from "./tech-tree-conections";
+import TechNode from "./techNode/tech-node";
 import TreePicks from "./tree-picks";
 
 export default function TechTree() {
+  const { isShowingDescription } = useNode();
+
   const { nodes, toggleNode, canSelectNode, selectionOrder, totalCost } =
-    useTechTree(ALL_NODES_WITHOUT_DESCRIPTION);
+    useTechTree(
+      isShowingDescription
+        ? ALL_NODES_WITH_DESCRIPTION
+        : ALL_NODES_WITHOUT_DESCRIPTION
+    );
   const { scrollContainerRef, dragHandlers } = useDragging();
   const { width, height } = useWindowHeight();
 
@@ -78,6 +87,7 @@ export default function TechTree() {
         <div className="flex flex-row items-center space-x-2">
           <TreePicks nodes={nodes} selectionOrder={selectionOrder} />
           <MuteButton />
+          <ShowDescriptionButton />
         </div>
       </div>
     </div>

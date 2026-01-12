@@ -1,6 +1,6 @@
 import type { Node } from "@/lib/utils";
+import { Share2 } from "lucide-react";
 import { useState } from "react";
-import { FaShareNodes } from "react-icons/fa6";
 import NodeCard from "./node-card";
 import {
   Dialog,
@@ -40,7 +40,7 @@ export default function TreePicks({ selectionOrder, nodes }: ThreePicksProps) {
               className="size-15 shrink-0 cursor-pointer hover:bg-[#01300b] flex items-center rounded-full shadow-md bg-[#02410f] border-2 border-solid border-[#483214] justify-center"
               aria-label={"Show selected nodes in order"}
             >
-              <FaShareNodes className="size-6 text-[#8FA557] hover:text-[#8FA557]" />
+              <Share2 className="size-6 text-[#8FA557] hover:text-[#8FA557]" />
             </div>
           </DialogTrigger>
         </TooltipTrigger>

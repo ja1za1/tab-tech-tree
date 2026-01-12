@@ -74,7 +74,7 @@ export const COLUMN_17_NODES: Node[] = [
   },
   {
     id: NODE_IDS.OPTIMAL_TESLA_TRANSFER,
-    name: "Optima Tesla Transfer",
+    name: "Optimal Tesla Transfer",
     description: [
       "Tesla Tower: Energy transfer radius +1",
       "Tesla Tower: View range +1",
