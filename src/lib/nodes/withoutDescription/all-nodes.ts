@@ -1,4 +1,4 @@
-import type { Node } from "../utils";
+import type { Node } from "../../utils";
 import { COLUMN_1_NODES } from "./column-1";
 import { COLUMN_10_NODES } from "./column-10";
 import { COLUMN_11_NODES } from "./column-11";
@@ -17,7 +17,7 @@ import { COLUMN_7_NODES } from "./column-7";
 import { COLUMN_8_NODES } from "./column-8";
 import { COLUMN_9_NODES } from "./column-9";
 
-export const ALL_NODES: Node[] = [
+export const ALL_NODES_WITHOUT_DESCRIPTION: Node[] = [
   ...COLUMN_1_NODES,
   ...COLUMN_2_NODES,
   ...COLUMN_3_NODES,

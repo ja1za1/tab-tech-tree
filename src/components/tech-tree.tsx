@@ -1,8 +1,9 @@
 import { useDragging } from "@/hooks/useDragging";
 import useTechTree from "@/hooks/useTechTree";
 import useWindowHeight from "@/hooks/useWindowDimensions";
-import { ALL_NODES } from "@/lib/nodes/all-nodes";
+import { ALL_NODES_WITHOUT_DESCRIPTION } from "@/lib/nodes/withoutDescription/all-nodes";
 import { cn } from "@/lib/utils";
+import { MuteButton } from "./mute-button";
 import ShareButton from "./share-button";
 import ShowTotalCost from "./show-total-cost";
 import TechNode from "./tech-node";
@@ -11,7 +12,7 @@ import TreePicks from "./tree-picks";
 
 export default function TechTree() {
   const { nodes, toggleNode, canSelectNode, selectionOrder, totalCost } =
-    useTechTree(ALL_NODES);
+    useTechTree(ALL_NODES_WITHOUT_DESCRIPTION);
   const { scrollContainerRef, dragHandlers } = useDragging();
   const { width, height } = useWindowHeight();
 
@@ -74,7 +75,10 @@ export default function TechTree() {
             : "bottom-40 left-15 size-18"
         )}
       >
-        <TreePicks nodes={nodes} selectionOrder={selectionOrder} />
+        <div className="flex flex-row items-center space-x-2">
+          <TreePicks nodes={nodes} selectionOrder={selectionOrder} />
+          <MuteButton />
+        </div>
       </div>
     </div>
   );

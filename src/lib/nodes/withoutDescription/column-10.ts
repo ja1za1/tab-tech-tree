@@ -1,0 +1,82 @@
+import type { Node } from "../../utils";
+import { NODE_IDS } from "../node-ids";
+import {
+  COLUMN_10_LEFT,
+  LINE_2_HEIGHT,
+  LINE_4_HEIGHT,
+  LINE_6_HEIGHT,
+  LINE_7_HEIGHT,
+  LINE_8_HEIGHT,
+  LINE_9_HEIGHT,
+} from "./line-columns-values";
+
+export const COLUMN_10_NODES: Node[] = [
+  {
+    id: NODE_IDS.PLASMA_SPHERES,
+    name: "Plasma Spheres",
+    description: ["New building: Shock Tower"],
+    imageSrc: "/assets/image/energy-tower.png",
+    position: { left: COLUMN_10_LEFT, top: LINE_2_HEIGHT },
+
+    cost: 140,
+    children: [NODE_IDS.HIGH_VOLTAGE_IONIZER],
+    dependsOn: NODE_IDS.TESLA_COILS,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.MILITARY_MASTERY,
+    name: "Military Mastery",
+    description: ["New wonder: The Academy of Immortals"],
+    imageSrc: "/assets/image/military-mastery.png",
+    position: { left: COLUMN_10_LEFT, top: LINE_4_HEIGHT },
+
+    cost: 200,
+    children: [],
+    dependsOn: NODE_IDS.MILITARY_TACTICS,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.BLACK_MARKET,
+    name: "Black Market",
+    description: ["+1 Gold per infected killed"],
+    imageSrc: "/assets/image/gold.png",
+    position: { left: COLUMN_10_LEFT, top: LINE_6_HEIGHT },
+    cost: 140,
+    children: [],
+    dependsOn: NODE_IDS.CURRENCY,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.REINFORCED_CONCRETE,
+    name: "Reinforced Concrete",
+    description: ["Stone Wall, Stone Gate, Stone Tower: +20% Life"],
+    imageSrc: "/assets/image/castle.png",
+    position: { left: COLUMN_10_LEFT, top: LINE_7_HEIGHT },
+    cost: 140,
+    children: [NODE_IDS.BRONZE_FORGING],
+    dependsOn: NODE_IDS.HIGH_RISE_DEFENSES_II,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.CLIMATE_CONTROL,
+    name: "Climate Control",
+    description: ["New wonder: The Crystal Palace"],
+    imageSrc: "/assets/image/climate-control.png",
+    position: { left: COLUMN_10_LEFT, top: LINE_8_HEIGHT },
+    cost: 200,
+    children: [NODE_IDS.MONUMENTS],
+    dependsOn: NODE_IDS.INSULATING_MATERIALS,
+    isSelected: false,
+  },
+  {
+    id: NODE_IDS.ARMORED_ATTACK_STATION,
+    name: "Armored Attack Station",
+    description: ["New building: Advanced Outpost", "+200 Empire points"],
+    imageSrc: "/assets/image/armored-attack-station.png",
+    position: { left: COLUMN_10_LEFT, top: LINE_9_HEIGHT },
+    cost: 120,
+    children: [],
+    dependsOn: NODE_IDS.AUTONOMOUS_WEAPONS,
+    isSelected: false,
+  },
+];

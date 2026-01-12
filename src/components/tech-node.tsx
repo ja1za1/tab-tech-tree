@@ -1,3 +1,4 @@
+import { useAudio } from "@/context/audio-content";
 import { memo, useCallback } from "react";
 import { cn } from "../lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -34,21 +35,28 @@ function TechNode({
   handleNodeToggle,
   nodeSelectionOrder,
 }: TechNodeProps) {
+  const { isMuted } = useAudio();
+
   const handleClick = useCallback(() => {
     if (!isRemovable || !canSelectNode(id)) {
       return;
     }
-    if (isSelected) {
-      const audio = AUDIO_FILES.unselect.cloneNode() as HTMLAudioElement;
-      audio.volume = 0.4;
-      audio.play().catch((e) => console.error("Audio unselect play error:", e));
-    } else {
-      const audio = AUDIO_FILES.select.cloneNode() as HTMLAudioElement;
-      audio.volume = 0.4;
-      audio.play().catch((e) => console.error("Audio select play error:", e));
+    if (!isMuted) {
+      if (isSelected) {
+        const audio = AUDIO_FILES.unselect.cloneNode() as HTMLAudioElement;
+        audio.volume = 0.4;
+        audio
+          .play()
+          .catch((e) => console.error("Audio unselect play error:", e));
+      } else {
+        const audio = AUDIO_FILES.select.cloneNode() as HTMLAudioElement;
+        audio.volume = 0.4;
+        audio.play().catch((e) => console.error("Audio select play error:", e));
+      }
     }
+
     handleNodeToggle(id);
-  }, [canSelectNode, handleNodeToggle, id, isRemovable, isSelected]);
+  }, [canSelectNode, handleNodeToggle, id, isRemovable, isSelected, isMuted]);
 
   return (
     <Tooltip>

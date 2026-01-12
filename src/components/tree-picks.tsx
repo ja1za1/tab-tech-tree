@@ -1,5 +1,6 @@
 import type { Node } from "@/lib/utils";
 import { useState } from "react";
+import { FaShareNodes } from "react-icons/fa6";
 import NodeCard from "./node-card";
 import {
   Dialog,
@@ -9,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface ThreePicksProps {
   selectionOrder: number[];
@@ -31,11 +33,21 @@ export default function TreePicks({ selectionOrder, nodes }: ThreePicksProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <div className="w-full cursor-pointer hover:bg-[#01300b] h-full flex items-center rounded-full shadow-md bg-[#02410f] border-2 border-solid border-[#483214] p-4">
-          <img src="/assets/image/config.png" />
-        </div>
-      </DialogTrigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <DialogTrigger asChild>
+            <div
+              className="size-15 shrink-0 cursor-pointer hover:bg-[#01300b] flex items-center rounded-full shadow-md bg-[#02410f] border-2 border-solid border-[#483214] justify-center"
+              aria-label={"Show selected nodes in order"}
+            >
+              <FaShareNodes className="size-6 text-[#8FA557] hover:text-[#8FA557]" />
+            </div>
+          </DialogTrigger>
+        </TooltipTrigger>
+        <TooltipContent className="bg-[#1E2B01] p-2" side="bottom">
+          <p>Show selected nodes</p>
+        </TooltipContent>
+      </Tooltip>
       <DialogContent className="bg-[#1E2B01] border-2  border-[#483214] font-tab max-h-100 overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-[#C3D59B]">Nodes picked</DialogTitle>

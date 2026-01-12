@@ -1,10 +1,10 @@
-import type { Node } from "../utils";
+import type { Node } from "../../utils";
+import { NODE_IDS } from "../node-ids";
 import {
   COLUMN_15_LEFT,
   LINE_10_HEIGHT,
   LINE_5_HEIGHT,
 } from "./line-columns-values";
-import { NODE_IDS } from "./node-ids";
 
 export const COLUMN_15_NODES: Node[] = [
   {

@@ -1,4 +1,5 @@
-import type { Node } from "../utils";
+import type { Node } from "../../utils";
+import { NODE_IDS } from "../node-ids";
 import {
   COLUMN_6_LEFT,
   LINE_10_HEIGHT,
@@ -7,7 +8,6 @@ import {
   LINE_6_HEIGHT,
   LINE_7_HEIGHT,
 } from "./line-columns-values";
-import { NODE_IDS } from "./node-ids";
 
 export const COLUMN_6_NODES: Node[] = [
   {
