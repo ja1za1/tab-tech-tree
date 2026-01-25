@@ -48,7 +48,7 @@ export default function TreePicks({ selectionOrder, nodes }: ThreePicksProps) {
           <p>Show selected nodes</p>
         </TooltipContent>
       </Tooltip>
-      <DialogContent className="bg-[#1E2B01] border-2  border-[#483214] font-tab max-h-100 overflow-y-auto">
+      <DialogContent className="bg-[#1E2B01] border-2  border-[#483214] font-tab max-h-150 overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-[#C3D59B]">Nodes picked</DialogTitle>
           <DialogDescription>

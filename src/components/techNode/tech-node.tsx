@@ -1,7 +1,6 @@
 import { useAudio } from "@/context/audio-content";
 import { useNode } from "@/context/node-content";
 import { memo, useCallback } from "react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import NodeWithDescription from "./node-with-description";
 import NodeWithoutDescription from "./node-without-description";
 
@@ -75,33 +74,18 @@ function TechNode({
       description={description}
     />
   ) : (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <NodeWithoutDescription
-          canSelectNode={canSelectNode}
-          cost={cost}
-          handleClick={handleClick}
-          id={id}
-          imageSrc={imageSrc}
-          isSelected={isSelected}
-          name={name}
-          position={position}
-          nodeSelectionOrder={nodeSelectionOrder}
-        />
-      </TooltipTrigger>
-      <TooltipContent className="bg-[#1E2B01] w-fit p-2 " side="bottom">
-        <div className="flex flex-col space-y-2">
-          <span className="font-tab font-bold text-lg text-[#8FA557]">
-            {name}
-          </span>
-          <div className="border-t w-full font-tab text-sm text-[#C3D59B]">
-            {description.map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
-          </div>
-        </div>
-      </TooltipContent>
-    </Tooltip>
+    <NodeWithoutDescription
+      canSelectNode={canSelectNode}
+      cost={cost}
+      handleClick={handleClick}
+      id={id}
+      imageSrc={imageSrc}
+      isSelected={isSelected}
+      name={name}
+      position={position}
+      nodeSelectionOrder={nodeSelectionOrder}
+      description={description}
+    />
   );
 }
 
