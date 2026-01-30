@@ -75,7 +75,7 @@ export const COLUMN_8_NODES: Node[] = [
     description: ["+6 Iron every Train"],
     imageSrc: "/assets/image/train.png",
     position: { left: COLUMN_8_LEFT, top: LINE_10_HEIGHT },
-    cost: 120,
+    cost: 200,
     children: [NODE_IDS.OIL_TRANSPORTATION],
     dependsOn: NODE_IDS.STONE_TRANSPORTATION,
     isSelected: false,
